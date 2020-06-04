@@ -24,5 +24,34 @@ namespace Pattern2
         {
             InitializeComponent();
         }
+
+        CancellationTokenSource cts;
+        Semaphore sem = new Semaphore(1, 1);
+
+        private async void Btn_Avvia_Click(object sender, RoutedEventArgs e)
+        {
+            cts = new CancellationTokenSource();
+            //WorkerAsync wrk = new WorkerAsync(10, 1000, cts);
+            
+            IProgress<int> progress = new Progress<int>(UpdateUI);
+            WorkerProgressAsync wrk = new WorkerProgressAsync(sem, 10, 1000, cts, progress);
+            //WorkerProgress wrk = new WorkerProgress(10,1000,cts,progress);
+            await wrk.Start();
+
+            MessageBox.Show("Mi dimentico del Thread secondario e non attendo il thread secondario per visualizzare questo messaggio");
+        }
+
+        private void UpdateUI(int i)
+        {
+            Lbl_Ris.Content = i.ToString();
+        }
+
+        private void Btn_Ferma_Click(object sender, RoutedEventArgs e)
+        {
+            if (cts != null)
+            {
+                cts.Cancel();
+            }
+        }
     }
 }

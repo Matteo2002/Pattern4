@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Button x:Name="Btn_Avvia" Content="Avvia Task" HorizontalAlignment="Left" Height="24" Margin="337,105,0,0" VerticalAlignment="Top" Width="152" Click="Btn_Avvia_Click"/>
+        <Button x:Name="Btn_Ferma" Content="Ferma Task" HorizontalAlignment="Left" Height="24" Margin="337,201,0,0" VerticalAlignment="Top" Width="152" Click="Btn_Ferma_Click"/>
+        <Label x:Name="Lbl_Ris" Content="0" HorizontalAlignment="Left" Height="24" Margin="405,156,0,0" VerticalAlignment="Top" Width="21"/>
+
     </Grid>
 </Window>
